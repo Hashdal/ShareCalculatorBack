@@ -5,5 +5,5 @@ import com.learning.content_calendar.entity.User;
 
 
 public interface UserRepository extends JpaRepository<User, Long> {
-
+    
 }

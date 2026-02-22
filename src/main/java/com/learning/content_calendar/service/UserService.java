@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import com.learning.content_calendar.entity.User;
 import com.learning.content_calendar.repository.UserRepository;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -18,5 +19,9 @@ public class UserService {
 
     public List<User> getAll() {
         return userRepository.findAll();
+    }
+
+    public Optional<User> getUserById(Long UserId) {
+        return userRepository.findById(UserId);
     }
 }

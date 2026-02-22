@@ -17,4 +17,14 @@ public class User {
     
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<ContentItem> contentItems;
+
+    public Long getId() {return this.id;}
+
+    public void setName(String name) {this.name = name;}
+    public String getName() {return this.name;}
+
+    public void setEmail(String email) {this.email = email;}
+    public String getEmail() {return this.email;}
+
+    public List<ContentItem> getContentItem() {return this.contentItems;}
 }
