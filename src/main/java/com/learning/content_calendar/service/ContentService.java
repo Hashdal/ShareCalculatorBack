@@ -1,10 +1,13 @@
 package com.learning.content_calendar.service;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.*;
 
 import com.learning.content_calendar.entity.ContentItem;
 import com.learning.content_calendar.entity.ContentStatus;
 import com.learning.content_calendar.repository.ContentRepository;
+
+import jakarta.transaction.Transactional;
+
 import com.learning.content_calendar.entity.User;
 import java.util.List;
 import java.util.Optional;
@@ -41,5 +44,23 @@ public class ContentService {
         return contentRepository.findByUserIdAndContentStatus(userId, contentStatus);
     }
 
-    
+    @Transactional
+    public ContentItem updateStatus(Long ContentId, ContentStatus contentStatus) {
+        ContentItem contentItem = contentRepository.findById(ContentId).orElseThrow(
+            () -> new RuntimeException("Content not found")
+        );
+        contentItem.setContentStatus(contentStatus);
+        contentRepository.save(contentItem);
+        return contentItem;
+        
+    }
+
+    @Transactional
+    public void deleteContentItem(Long ContentId) {
+        ContentItem contentItem = contentRepository.findById(ContentId).orElseThrow(
+            () -> new RuntimeException("Content not found")
+        );
+        contentRepository.delete(contentItem);
+    }
+
 }
